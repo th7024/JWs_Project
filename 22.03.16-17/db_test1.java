@@ -79,18 +79,4 @@ public class db_test1 {
 		}
 	}
 	
-	public int checked_coupon(String number) {
-		try {
-			String Sql = "select * from customer where id = '"+number+"'";
-			rs = st.executeQuery(Sql);
-			while(rs.next()) {
-				return rs.getInt("coupon");
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return 0;
-	}
-	
 }

@@ -16,8 +16,6 @@ public class accumulate_coupon extends JFrame {
 
 	private JPanel contentPane;
 	private String p_number = "";
-	private int[] str= {};
-	public int coupon_count;
 	public int num;
 	/**
 	 * Launch the application.
@@ -57,12 +55,14 @@ public class accumulate_coupon extends JFrame {
 		comboBox.setEditable(true);
 		comboBox.setToolTipText("");
 		comboBox.setModel(new DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
-		comboBox.setBounds(12, 138, 99, 42);
+		comboBox.setBounds(36, 138, 75, 42);
 		comboBox.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				num = Integer.parseInt(comboBox.getSelectedItem().toString());
+				db_test1 dt = new db_test1();
+				dt.plus_coupon(p_number, num);
 			}
 		});
 		contentPane.add(comboBox);
@@ -77,52 +77,25 @@ public class accumulate_coupon extends JFrame {
 		lblNewLabel_1.setBounds(349, 34, 265, 49);
 		contentPane.add(lblNewLabel_1);
 
-		JLabel show_coupon = new JLabel();
-		show_coupon.setBounds(305, 152, 272, 28);
-		contentPane.add(show_coupon);
+		JLabel lblNewLabel_2 = new JLabel("New label");
+		lblNewLabel_2.setBounds(305, 152, 57, 15);
+		contentPane.add(lblNewLabel_2);
 
-		JLabel using_coupon = new JLabel();
-		using_coupon.setBounds(305, 200, 272, 28);
-		contentPane.add(using_coupon);
+		JLabel lblNewLabel_3 = new JLabel("New label");
+		lblNewLabel_3.setBounds(305, 200, 57, 15);
+		contentPane.add(lblNewLabel_3);
 
-		JButton update_coupon = new JButton("\uCFE0\uD3F0 \uC801\uB9BD");
-		update_coupon.addActionListener(new ActionListener() {
+		JButton btnNewButton = new JButton("\uCFE0\uD3F0 \uC801\uB9BD");
+		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				db_test1 dt = new db_test1();
-				dt.plus_coupon(p_number, num);
-				coupon_count =dt.checked_coupon(p_number);
-				show_coupon.setText("도장 개수 : "+coupon_count+ "장 입니다.");
-				using_coupon.setText("사용 가능한 쿠폰 : "+coupon_count/10 + "장 입니다.");
+				System.out.println(num + "쿠폰");
 			}
 		});
-		update_coupon.setBounds(133, 157, 97, 23);
-		contentPane.add(update_coupon);
+		btnNewButton.setBounds(233, 402, 97, 23);
+		contentPane.add(btnNewButton);
 
-		JButton use_coupon = new JButton("\uCFE0\uD3F0 \uC0AC\uC6A9");
-		use_coupon.addActionListener(new ActionListener() { // 쿠폰 몇장 사용할지 처리해얗라거 같은데
-			public void actionPerformed(ActionEvent e) {
-				db_test1 dt = new db_test1();
-				coupon_count =dt.checked_coupon(p_number);
-				show_coupon.setText("도장 개수 : "+coupon_count+ "장 입니다.");
-				using_coupon.setText("사용 가능한 쿠폰 : "+coupon_count/10 + "장 입니다.");
-			}
-		});
-		use_coupon.setBounds(428, 264, 97, 23);
-		contentPane.add(use_coupon);
-		System.out.println(coupon_count + " ddd d");
-		for(int i=0;i<coupon_count/10;i++) {
-			str[i]=i+1;
-		}
-		JComboBox coupon_num = new JComboBox();
-		coupon_num.setFont(new Font("굴림", Font.BOLD, 15));
-		coupon_num.setEditable(true);
-		coupon_num.setModel(new DefaultComboBoxModel());
-		coupon_num.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		coupon_num.setBounds(305, 261, 97, 28);
-		contentPane.add(coupon_num);
+		JButton btnNewButton_1 = new JButton("\uCFE0\uD3F0 \uC0AC\uC6A9");
+		btnNewButton_1.setBounds(419, 402, 97, 23);
+		contentPane.add(btnNewButton_1);
 	}
 }
